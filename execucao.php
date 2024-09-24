@@ -18,6 +18,22 @@ $Corinthians=array(1=>"Hugo Souza", 2=>"Matheuzinho", 3=>"Félix Torres", 4=>"Ca
 
 $Palmeiras=array(1=>"Mateus", 2=>"Marcos Rocha", 3=>"Edu Dracena", 4=>"Agustín Giay", 5=>"Aníbal Moreno", 6=>"Vanderlan", 7=>"Dudu", 8=>"Zé Rafael", 9=>"Felipe Anderson", 10=>"Rony", 11=>"Bruno Rodrigues");
 
+$Flamengo_dicas=array("o time da carta possui 8 campeonatos brasileiros...", "'Em dezembro de 81...'", "o time da carta veste rubro-negro...");
+
+$Vasco_dicas=array("o time da carta ganhou a Libertadores de 1998...", "o time da carta tem nome em homenagem a um navegador português...", "o nome do estádio do time da carta é 'São Januário'...");
+
+$Fluminense_dicas=array("o time da carta é sediado no bairro de Laranjeiras, na Zona Sul do Rio de Janeiro...", "o time da carta veste as cores grená e verde escuro...", "o time da carta ganhou a Libertadores de 2023...");
+
+$Botafogo_dicas=array("o time da carta possui o apelido de 'Glorioso'...", "o escudo do time da carta é 'uma estrela solitária'...", "o time da carta PIPOCOU fortemente no brasileirão de 2023...");
+
+$Sao_Paulo_dicas=array("o time da carta possui 3 mundiais...", "o goleiro com mais gols na história é ídolo do time da carta...", "o mascote do time da carta é um 'velhinho' com barbas brancas...");
+
+$Santos_dicas=array("o time da carta foi rebaixado pela primeira vez em sua história em 2023...", "o time da carta é conhecido por ter uma torcida 'velha'...", "o time da carta veste a cor branca...");
+
+$Corinthians_dicas=array("o time da carta veste alvinegro...", "o time da carta possui 30 campeonatos paulistas...", "o time da carta possui 1 Libertadores e 2 Mundiais...");
+
+$Palmeiras_dicas=array("o time da carta conquistou boa parte de seus títulos brasileiros na justiça...", "o time da carta veste alviverde...", "o estádio do time da carta é o Allianz Park...");
+
 $times=array("Flamengo", "Vasco da Gama", "Fluminense", "Botafogo", "São Paulo", "Santos", "Corinthians", "Palmeiras");
 $numeros=array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
 
@@ -59,6 +75,24 @@ do {
                 while($i<count($cartas)){
                     echo "\nCarta " . $i+1 . ":\n" . $cartas[$i] . "\n";
                     $i++;
+                }
+
+                if($cartas[$carta_escolhida_pc]->getTime()==="Flamengo"){
+                    echo "\nDica: " . $Flamengo_dicas[array_rand($Flamengo_dicas)] . "\n";
+                } else if($cartas[$carta_escolhida_pc]->getTime()==="Vasco da Gama"){
+                    echo "\nDica: " . $Vasco_dicas[array_rand($Vasco_dicas)] . "\n";
+                } else if($cartas[$carta_escolhida_pc]->getTime()==="Fluminense"){
+                    echo "\nDica: " . $Fluminense_dicas[array_rand($Fluminense_dicas)] . "\n";
+                } else if($cartas[$carta_escolhida_pc]->getTime()==="Botafogo"){
+                    echo "\nDica: " . $Botafogo_dicas[array_rand($Botafogo_dicas)] . "\n";
+                } else if($cartas[$carta_escolhida_pc]->getTime()==="São Paulo"){
+                    echo "\nDica: " . $Sao_Paulo_dicas[array_rand($Sao_Paulo_dicas)] . "\n";
+                } else if($cartas[$carta_escolhida_pc]->getTime()==="Santos"){
+                    echo "\nDica: " . $Santos_dicas[array_rand($Santos_dicas)] . "\n";
+                } else if($cartas[$carta_escolhida_pc]->getTime()==="Corinthians"){
+                    echo "\nDica: " . $Corinthians_dicas[array_rand($Corinthians_dicas)] . "\n";
+                } else{
+                    echo "\nDica: " . $Palmeiras_dicas[array_rand($Palmeiras_dicas)] . "\n";
                 }
 
                 $opcao_adivinhar=(readline("Escolha a carta que você acredita que foi sorteada (entre 1 e 8), ou digite 0 para desistir: "));
