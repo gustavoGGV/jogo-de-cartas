@@ -41,6 +41,7 @@ $pontos=0;
 
 $opcao=0;
 do {
+
     echo "\n-----------MENU-----------\n";
     echo "| 1 - Adivinhar           |\n";
     echo "| 2 - Meus pontos         |\n";
@@ -57,8 +58,8 @@ do {
 
         case 1:
 
+            $valor=5;
             $opcao_adivinhar=0;
-            do{
 
                 $cartas=array();
                 for($i=0; $i<8; $i++){
@@ -76,6 +77,8 @@ do {
                     echo "\nCarta " . $i+1 . ":\n" . $cartas[$i] . "\n";
                     $i++;
                 }
+
+            do{
 
                 if($cartas[$carta_escolhida_pc]->getTime()==="Flamengo"){
                     echo "\nDica: " . $Flamengo_dicas[array_rand($Flamengo_dicas)] . "\n";
@@ -100,8 +103,12 @@ do {
 
                 if($carta_escolhida_jogador===$carta_escolhida_pc){
 
-                    echo "\nParabéns, você escolheu a carta certa! (+5 pontos)\n";
-                    $pontos+=5;
+                    if($valor==0){
+                        "\nVocê escolheu a carta certa, porém ganhou nenhum ponto!\n";
+                    } else{
+                        echo "\nParabéns, você escolheu a carta certa! (+ " . $valor . " pontos)\n";
+                        $pontos+=$valor;
+                    }
                 
                     if($cartas[$carta_escolhida_pc]->getTime()==="Flamengo"){
 
@@ -162,17 +169,27 @@ do {
                         $pontos+=10;
                         sleep(2);
 
+                        break;
+
                     } else{
 
                         echo "\nQue pena, você errou...\n\n";
                         sleep(2);
 
+                        break;
+
                     }
 
                 } else if($carta_escolhida_jogador>$carta_escolhida_pc && $carta_escolhida_jogador<=count($cartas) && $opcao_adivinhar!=0 || $carta_escolhida_jogador<$carta_escolhida_pc && $carta_escolhida_jogador<=count($cartas) && $opcao_adivinhar!=0){
 
-                    echo "\nQue pena, você errou...\n";
-                    sleep(2); // Function que adiciona um "delay" em segundos.
+                    if($valor>1){
+                        echo "\nQue pena, você errou... (-1 ponto caso acerte)\n";
+                        $valor-=1;
+                        sleep(2); // Function que adiciona um "delay" em segundos.
+                    } else{
+                        echo "\nEsta rodada vale apenas 1 ponto! Você errou muito!\n";
+                        sleep(2);
+                    }
 
                 } else if($opcao_adivinhar!=0){
 
