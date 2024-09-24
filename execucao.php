@@ -21,7 +21,9 @@ $Palmeiras=array(1=>"Mateus", 2=>"Marcos Rocha", 3=>"Edu Dracena", 4=>"Agustín 
 $times=array("Flamengo", "Vasco da Gama", "Fluminense", "Botafogo", "São Paulo", "Santos", "Corinthians", "Palmeiras");
 $numeros=array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
 
-$opcao = 0;
+$pontos=0;
+
+$opcao=0;
 do {
     echo "\n-----------MENU-----------\n";
     echo "| 1 - Adivinhar           |\n";
@@ -55,7 +57,7 @@ do {
 
                 $i=0;
                 while($i<count($cartas)){
-                    echo "Carta " . $i+1 . ":\n" . $cartas[$i] . "\n";
+                    echo "\nCarta " . $i+1 . ":\n" . $cartas[$i] . "\n";
                     $i++;
                 }
 
@@ -65,13 +67,14 @@ do {
                 if($carta_escolhida_jogador===$carta_escolhida_pc){
 
                     echo "\nParabéns, você escolheu a carta certa! (+5 pontos)\n";
+                    $pontos+=5;
                 
                     if($cartas[$carta_escolhida_pc]->getTime()==="Flamengo"){
 
                         echo "\nJogadores deste time:\n1 - Ayrton Lucas\n2 - Cebolinha\n3 - Gerson\n4 - Léo Ortiz\n5 - Léo Pereira\n6 - Luiz Araújo\n7 - Pedro\n8 - Pulgar\n9 - Rossi\n10 - Varela\n11 - Zico\n";
                         
-                        // Maracutaia para pegar o número da carta (fiquei orgulhoso que deu certo :D).
-                        $jogador_certo=$Flamengo[$cartas[$carta_escolhida_pc]->getNumero()]; 
+                        /* Maracutaia para pegar o jogador do número da carta (fiquei orgulhoso que deu certo :D). */
+                        $jogador_certo=$Flamengo[$cartas[$carta_escolhida_pc]->getNumero()];
 
                     } else if($cartas[$carta_escolhida_pc]->getTime()==="Vasco da Gama"){
 
@@ -117,11 +120,12 @@ do {
                         
                     }
 
-                    $jogador_escolhido=(readline("Acerte qual jogador utiliza/utilizou este número neste clube e ganhe mais 10 pontos!: "));
+                    $jogador_escolhido=(readline("Digite o nome do jogador que utiliza/utilizou este número neste clube e ganhe mais 10 pontos!: "));
 
                     if($jogador_escolhido===$jogador_certo){
 
                         echo "\nVocê acertou! (+10 pontos)\n\n";
+                        $pontos+=10;
                         sleep(2);
 
                     } else{
@@ -131,12 +135,12 @@ do {
 
                     }
 
-                } else if($carta_escolhida_jogador>$carta_escolhida_pc && $carta_escolhida_jogador<=count($cartas) && $carta_escolhida_jogador!=0 || $carta_escolhida_jogador<$carta_escolhida_pc && $carta_escolhida_jogador<=count($cartas) && $carta_escolhida_jogador!=0){
+                } else if($carta_escolhida_jogador>$carta_escolhida_pc && $carta_escolhida_jogador<=count($cartas) && $opcao_adivinhar!=0 || $carta_escolhida_jogador<$carta_escolhida_pc && $carta_escolhida_jogador<=count($cartas) && $opcao_adivinhar!=0){
 
                     echo "\nQue pena, você errou...\n";
                     sleep(2); // Function que adiciona um "delay" em segundos.
 
-                } else{
+                } else if($opcao_adivinhar!=0){
 
                     echo "\nOpção INVÁLIDA! Refazendo.\n";
                     sleep(2);
@@ -151,7 +155,8 @@ do {
 
         case 2:
 
-            
+            echo "\nSeus pontos: " . $pontos . ".\n";
+
             break;
 
         default:
